@@ -16,6 +16,7 @@
     function myFunction() {
           
         if ($("div[id*='setSelectDiv']").length <= 0) {
+            $('#setSelect').addClass('sBottomIcon').removeClass('sCloseIcon');
             var div = document.createElement('div');
             div.id = 'setSelectDiv';
             document.getElementById('select').appendChild(div);
@@ -38,9 +39,7 @@
         $('#setSelectUl li').click(function () {
             $('#setSelect').val($(this).text());
             $('#setSelectDiv,setSelectInput,setSelectUl').remove();
-            //document.getElementById('setSelect').style.background = "#f3f3f3 url('close.png') no-repeat right";
-            $('#setSelect').removeClass('sBottomIcon');
-            $('#setSelect').addClass('sCloseIcon');
+            $('#setSelect').removeClass('sBottomIcon').addClass('sCloseIcon');
         });
 
         $(function () {

@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SetSelect</title>
+    <link href="select.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="select">
+        <input id="setSelect" type="text" value="Seçiniz." />
+        <div id="setSelectMulti"></div>
+    </div>
+
+    <script src="jquery.2.1.0.js"></script>
+    <script>
+        $('#setSelect').addClass('sBottomIcon');
+        document.getElementById("setSelect").addEventListener("click", myFunction);
+        function myFunction() {
+
+            if ($("div[id*='setSelectDiv']").length <= 0) {
+                $('#setSelect').addClass('sBottomIcon').removeClass('sCloseIcon');
+                var div = document.createElement('div');
+                div.id = 'setSelectDiv';
+                document.getElementById('select').appendChild(div);
+
+                var input = document.createElement('input');
+                input.id = 'setSelectInput';
+                document.getElementById('setSelectDiv').appendChild(input);
+
+                var ul = document.createElement('ul');
+                ul.id = 'setSelectUl';
+                ul.innerHTML = '<li data-url="1">example text 1</li>' +
+                    '<li data-url="2">example text 2</li>' +
+                    '<li data-url="3">example text 3</li>' +
+                    '<li data-url="4">example text 4</li>' +
+                    '<li data-url="5">example text 5</li>' +
+                    '<li data-url="6">example text 6</li>';
+                document.getElementById('setSelectDiv').appendChild(ul);
+            }
+
+            $('#setSelectUl li').click(function () {
+                $('#setSelectMulti').append(('<span class="setlabel">' + $(this).text() + ' <span class="labelClose"></span></span>'));
+
+                $('#setSelectDiv,setSelectInput,setSelectUl').remove();
+                $('#setSelect').removeClass('sBottomIcon').addClass('sCloseIcon');
+                $('.labelClose').click(function () {
+                    $(this).closest('.setlabel').remove();
+                });
+            });
+
+
+            $(function () {
+                var $rows = $('#setSelectUl li');
+                $('body').on('keyup', '#setSelectInput', function (e) {
+                    var code = parseInt(e.keyCode || e.which);
+                    if (code == 9) return;
+                    if (code == 27) { $(this).val(null); }
+                    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase().replace('ı', 'i');
+                    $rows.show().filter(function () {
+                        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                        return !~text.indexOf(val);
+                    }).hide();
+                });
+            });
+        }
+
+
+    </script>
+</body>
+</html>

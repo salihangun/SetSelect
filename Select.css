@@ -1,0 +1,10 @@
+﻿
+#setSelect{border:1px solid #dddddd; width: 377px;float: left;padding: 8px 0 8px 13px;margin-left: 144px;font-size: 13px;}
+#setSelectDiv{ width: 377px;height: 144px;border:1px solid #dddddd; margin-left: 144px;padding: 8px 0 8px 13px;margin-top: 34px;position: absolute}
+#setSelectInput{border:1px solid #dddddd; width: 377px;float: left;padding: 8px 0 8px 13px;font-size: 13px; background: url('search.png') right no-repeat;margin-top: -9px;margin-left: -14px;float: left}
+#setSelectUl{ list-style-type: none;margin: 0;padding: 0;margin-top: 2px; float: left;height: 124px;overflow-y:scroll;width: 100%;}
+#setSelectUl li{ width: 97%; float: left;display: block;cursor: pointer;height: 34px;border-bottom: 1px solid #ddd;line-height: 34px;font-family: tahoma;font-size: 13px;padding-left: 5px;}
+#setSelectUl li:hover{background: #008080;color: #fff;}
+
+.sBottomIcon{background: url(selecticon.png) no-repeat right;}
+.sCloseIcon{background: url(close.png) no-repeat right;}

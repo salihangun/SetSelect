@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>SetSelect</title>
+    <link href="select.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="select">
+        <input id="setSelect" type="text" value="Seçiniz." />
+    </div>
+
+    <script src="jquery.2.1.0.js"></script>
+<script>
+    $('#setSelect').addClass('sBottomIcon');
+    document.getElementById("setSelect").addEventListener("click", myFunction);
+    function myFunction() {
+          
+        if ($("div[id*='setSelectDiv']").length <= 0) {
+            var div = document.createElement('div');
+            div.id = 'setSelectDiv';
+            document.getElementById('select').appendChild(div);
+
+            var input = document.createElement('input');
+            input.id = 'setSelectInput';
+            document.getElementById('setSelectDiv').appendChild(input);
+
+            var ul = document.createElement('ul');
+            ul.id = 'setSelectUl';
+            ul.innerHTML = '<li>example text 1</li>' +
+                '<li>example text 2</li>' +
+                '<li>example text 3</li>' +
+                '<li>example text 4</li>' +
+                '<li>example text 5</li>' +
+                '<li>example text 6</li>';
+            document.getElementById('setSelectDiv').appendChild(ul);
+        }
+
+        $('#setSelectUl li').click(function () {
+            $('#setSelect').val($(this).text());
+            $('#setSelectDiv,setSelectInput,setSelectUl').remove();
+            //document.getElementById('setSelect').style.background = "#f3f3f3 url('close.png') no-repeat right";
+            $('#setSelect').removeClass('sBottomIcon');
+            $('#setSelect').addClass('sCloseIcon');
+        });
+
+        $(function () {
+            var $rows = $('#setSelectUl li');
+            $('body').on('keyup', '#setSelectInput', function (e) {
+                var code = parseInt(e.keyCode || e.which);
+                if (code == 9) return;
+                if (code == 27) { $(this).val(null); }
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase().replace('ı', 'i');
+                $rows.show().filter(function () {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+        });
+    }
+
+
+</script>
+</body>
+</html>
